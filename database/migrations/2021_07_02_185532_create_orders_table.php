@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Maintenance extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class Maintenance extends Migration
      */
     public function up()
     {
-        Schema::create('maintenance',function (Blueprint $table){
+        Schema::create('orders', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->double('debt');
-            $table->integer('months_paid');
-            $table->integer('debt_days');
+            $table->date('order_date');
+            $table->date('order_date_finished')->nullable();
             $table->unsignedBigInteger('programs_id');
             $table->foreign('programs_id')->references('id')->on('programs')->onDelete('cascade')->onUpdate('cascade');
         });
@@ -30,6 +30,6 @@ class Maintenance extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('orders');
     }
 }

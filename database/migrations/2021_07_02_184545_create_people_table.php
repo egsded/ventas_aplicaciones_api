@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class People extends Migration
+class CreatePeopleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class People extends Migration
      */
     public function up()
     {
-        Schema::create('people',function (Blueprint $table){
-            $table->id()->autoIncrement();
+        Schema::create('people', function (Blueprint $table) {
+            $table->id()->autoIncrement;
             $table->string('name', 200);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
@@ -28,6 +28,6 @@ class People extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('people');
     }
 }

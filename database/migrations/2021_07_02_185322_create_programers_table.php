@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Programers extends Migration
+class CreateProgramersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class Programers extends Migration
      */
     public function up()
     {
-        Schema::create('programers',function (Blueprint $table){
+        Schema::create('programers', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('gituser', 200);
             $table->unsignedBigInteger('people_id');
@@ -28,6 +28,6 @@ class Programers extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('programers');
     }
 }

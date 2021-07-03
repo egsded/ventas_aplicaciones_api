@@ -13,7 +13,7 @@ class ProgramsHasProgramers extends Migration
      */
     public function up()
     {
-        Schema::create('programs_has_programers',function (Blueprint $table){
+         Schema::create('programs_has_programers', function (Blueprint $table) {
             $table->unsignedBigInteger('programers_id');
             $table->unsignedBigInteger('programs_id');
             $table->foreign('programers_id')->references('id')->on('programers')->onDelete('cascade')->onUpdate('cascade');
@@ -28,6 +28,6 @@ class ProgramsHasProgramers extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('maintenances');
     }
 }

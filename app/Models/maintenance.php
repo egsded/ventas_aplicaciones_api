@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class maintenance extends Model
 {
     use HasFactory;
+    protected $table = 'maintenance';
     public $timestamps = false;
-
-    public function programs(){
-    	return $this->morphOne('App\Models\programs');
-    }
 }

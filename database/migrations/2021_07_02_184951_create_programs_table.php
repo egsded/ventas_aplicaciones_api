@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Programs extends Migration
+class CreateProgramsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class Programs extends Migration
      */
     public function up()
     {
-        Schema::create('programs',function (Blueprint $table){
+        Schema::create('programs', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name', 500);
             $table->text('description');
@@ -34,6 +34,6 @@ class Programs extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('programs');
     }
 }

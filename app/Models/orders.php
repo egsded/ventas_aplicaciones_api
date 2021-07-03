@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class orders extends Model
 {
     use HasFactory;
+    protected $table = 'orders';
     public $timestamps = false;
-
-    public function programs(){
-    	return $this->morphMany('App\Models\programs');
-    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\people;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
@@ -54,6 +55,8 @@ class UserController extends Controller
     		'password' => Hash::make($request->get('password')),]);
 
     	$token = JWTAuth::fromUser($user);
+        $people = array('name' => $user->name, 'user_id' => $user->id);
+        people::create($people);
 
     	return response()->json(compact('user','token'),201);
     }
