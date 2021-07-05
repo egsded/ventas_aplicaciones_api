@@ -26,4 +26,6 @@ Route::get('authenticated', 'App\Http\Controllers\UserController@getAuthenticate
 
 Route::group(['middleware' => ['jwt.verify']], function() {
 	Route::get('people', 'App\Http\Controllers\PeopleController@index');
+	Route::get('programers', 'App\Http\Controllers\ProgramerController@index');
+	Route::get('programer/{id}', 'App\Http\Controllers\ProgramerController@getProgramer');
  });
