@@ -28,4 +28,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 	Route::get('people', 'App\Http\Controllers\PeopleController@index');
 	Route::get('programers', 'App\Http\Controllers\ProgramerController@index');
 	Route::get('programer/{id}', 'App\Http\Controllers\ProgramerController@getProgramer');
+	Route::post('/people/create', 'App\Http\Controllers\PeopleController@store');
+	Route::get('/find/people/{name}', 'App\Http\Controllers\PeopleController@findname');
+	Route::get('/people/delete/{id}', 'App\Http\Controllers\PeopleController@delete');
  });

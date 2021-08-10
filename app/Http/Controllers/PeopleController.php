@@ -8,7 +8,7 @@ use App\Models\people;
 class PeopleController extends Controller
 {
     public function index(){
-    	return people::all();
+    	return people::where('user_id', null)->get();
     }
 
     public function show($id){
@@ -16,16 +16,21 @@ class PeopleController extends Controller
     }
 
     public function store(Request $request){
-    	try {
-    		$people = people::create($request->all());
-    		return response()->json($people);
-    	} catch (Exception $e) {
-    		return response()->json($e);
-    	}
+        try{
+            $arraypeople = array('name' => $request->name);
+            $people = people::create($arraypeople);
+            return response()->json($people);
+        } catch(Exception $e){
+            return response()->json($e);
+        }
     }
 
     public function delete($id){
     	$people = people::findOrFail($id);
     	$people->delete();
+    }
+
+    public function findname($name){
+        return people::where("name", "like", "%".$name."%")->where("user_id", null)->get();
     }
 }
