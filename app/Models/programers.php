@@ -11,6 +11,7 @@ class programers extends Model
     use HasFactory;
     protected $table = 'programers';
     public $timestamps = false;
+    protected $fillable = ['gituser','people_id'];
 
     public function people(){
     	return $this->hasOne(people::class);

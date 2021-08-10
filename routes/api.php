@@ -31,4 +31,5 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 	Route::post('/people/create', 'App\Http\Controllers\PeopleController@store');
 	Route::get('/find/people/{name}', 'App\Http\Controllers\PeopleController@findname');
 	Route::get('/people/delete/{id}', 'App\Http\Controllers\PeopleController@delete');
+	Route::post('/people/githubuser', 'App\Http\Controllers\ProgramerController@makeUser');
  });
