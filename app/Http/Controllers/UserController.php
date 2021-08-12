@@ -55,7 +55,7 @@ class UserController extends Controller
     		'password' => Hash::make($request->get('password')),]);
 
     	$token = JWTAuth::fromUser($user);
-        $people = array('name' => $user->name, 'user_id' => $user->id);
+        $people = array('name' => $user->name, 'whats'=> $request->whats, 'user_id' => $user->id);
         people::create($people);
 
     	return response()->json(compact('user','token'),201);

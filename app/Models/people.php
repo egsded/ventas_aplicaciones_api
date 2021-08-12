@@ -11,7 +11,7 @@ class people extends Model
     use HasFactory;
     protected $table = 'people';
     public $timestamps = false;
-    protected $fillable = ['name','user_id'];
+    protected $fillable = ['name', 'whats', 'user_id'];
 
     public function programers(){
     	return $this->hasOne(programers::class);

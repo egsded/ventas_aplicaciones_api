@@ -17,7 +17,7 @@ class PeopleController extends Controller
 
     public function store(Request $request){
         try{
-            $arraypeople = array('name' => $request->name);
+            $arraypeople = array('name' => $request->name, 'whats' => $request->whats);
             $people = people::create($arraypeople);
             return response()->json($people);
         } catch(Exception $e){
