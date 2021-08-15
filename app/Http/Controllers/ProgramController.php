@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\programs as Program;
 use App\Models\people as P;
 use App\Models\orders as O;
+use App\Models\programers;
 use Illuminate\Support\Facades\DB;
 
 class ProgramController extends Controller
@@ -56,5 +58,33 @@ class ProgramController extends Controller
         }
 
         return response()->json('succesfully');
+    }
+
+    public function store(Request $r){
+        $hoy = Carbon::now();
+        try{
+            $programArray = array('name' => $r->name, 'description' => $r->description, 'instalation_date' => $r->instalation_date, 'price' => $r->price, 'database' => $r->database, 'repository' => $r->repository, 'type' => $r->type, 'people_id' => $r->people_id);
+            $program = Program::create($programArray);
+        }catch(Exception $e){
+            return response()->json($e);
+        }
+
+        try{
+            $orderArray = array('debt' => $program->price, 'order_date' => $hoy->format('Y-m-d'), 'programs_id' => $program->id);
+            $order = O::create($orderArray);
+        }catch(Exception $e){
+            return response()->json($e);
+        }
+
+        try{
+            $people = P::where('user_id', $r->user)->first();
+            $programers = programers::where('people_id', $people->id)->first();
+            $programer = programers::find($programers->id);
+            $programer->php()->attach($program);
+        }catch(Exception $e){
+            return response()->json($e);
+        }
+
+        return response()->json("succesfully");
     }
 }
