@@ -33,4 +33,6 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 	Route::get('/people/delete/{id}', 'App\Http\Controllers\PeopleController@delete');
 	Route::post('/people/githubuser', 'App\Http\Controllers\ProgramerController@makeUser');
 	Route::get('/programs/orders/{id}', 'App\Http\Controllers\ProgramController@getOrders');
+	Route::get('/programs/orders/all/{id}', 'App\Http\Controllers\ProgramController@allOfProyect');
+	Route::post('/programs/orders/edit', 'App\Http\Controllers\ProgramController@editOrder');
  });
